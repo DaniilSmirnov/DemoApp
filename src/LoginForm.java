@@ -59,9 +59,9 @@ public class LoginForm extends JFrame {
 
                     showMessage("Внимание", "Не все поля заполнены", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    if (DB.initConnetion("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234") == 0) {
+                    if (DB.initConnection("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234") == 0) {
 
-                        ResultSet result = DB.selectQuerry("Select * from users");
+                        ResultSet result = DB.selectQuery("Select * from users");
                         try {
                             while (result.next()) {
                                 if (login_s.equals(result.getString("login")) && pass_s.equals(result.getString("pass"))) {

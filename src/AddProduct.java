@@ -46,24 +46,23 @@ public class AddProduct extends JFrame {
                         return;
                     }
 
-                    if (DB.initConnetion("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234") == 0) {
-                        DB.execQuerry("create table if not exists product(id INT(64),title varchar(45),price INT(64)) ");
+                    if (DB.initConnection("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234") == 0) {
+                        DB.execQuery("create table if not exists product(id INT(64),title varchar(45),price INT(64)) ");
 
                         Product product = new Product();
                         product.setId(Integer.parseInt(textID.getText()));
                         product.setPrice(Integer.parseInt(textPrice.getText()));
                         product.setTitle(textTitle.getText());
 
-                        if (editor == false) {
-                            DB.execQuerry("insert into product (id,title,price) values(" + product.getId() + ",'" + product.getTitle() + "'," + product.getPrice() + ")");
+                        if (!editor) {
+                            DB.execQuery("insert into product (id,title,price) values(" + product.getId() + ",'" + product.getTitle() + "'," + product.getPrice() + ")");
 
                             model.addRow(new String[]{product.getId() + "", ' ' + product.getTitle() + ' ' + "", product.getPrice() + ""});
                         } else {
-                            DB.execQuerry("update product set title='" + product.getTitle() + "',price='" + product.getPrice() + "' where id=" + product.getId());
+                            DB.execQuery("update product set title='" + product.getTitle() + "',price='" + product.getPrice() + "' where id=" + product.getId());
                             model.removeRow(dataTable.getSelectedRow());
                             model.insertRow(dataTable.getSelectedRow() + 1, new String[]{product.getId() + "", ' ' + product.getTitle() + ' ' + "", product.getPrice() + ""});
                         }
-//                        model.removeRow(data.getSelected);
 
                         dispose();
 

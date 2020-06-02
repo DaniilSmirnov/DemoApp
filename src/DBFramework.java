@@ -6,11 +6,11 @@ import java.sql.SQLException;
 public class DBFramework {
     private Connection connection;
 
-    int initConnetion(String url, String login, String password) {
+    int initConnection(String url, String login, String password) {
         try {
             connection = DriverManager.getConnection(url, login, password);
             return 0;
-        } catch (SQLException e) {
+        } catch (SQLException ignored) {
 
         }
         return 1;
@@ -24,17 +24,17 @@ public class DBFramework {
         }
     }
 
-    ResultSet selectQuerry(String myquerry) {
+    ResultSet selectQuery(String query) {
         ResultSet resultSet = null;
         try {
-            resultSet = connection.createStatement().executeQuery(myquerry);
+            resultSet = connection.createStatement().executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return resultSet;
     }
 
-    void execQuerry(String querry) {
+    void execQuery(String querry) {
         try {
             connection.prepareStatement(querry).executeUpdate();
         } catch (SQLException e) {

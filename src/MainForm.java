@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-
 public class MainForm extends JFrame {
     private JPanel mainpanel;
     private JButton addBtn;
@@ -29,7 +28,7 @@ public class MainForm extends JFrame {
 
         DB = new DBFramework();
 
-        this.font=font;
+        this.font = font;
         model = new DefaultTableModel();
         model.addColumn("Идентификатор");
         model.addColumn("Название");
@@ -37,8 +36,8 @@ public class MainForm extends JFrame {
 
         dataTable.setModel(model);
 
-        if (DB.initConnetion("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234") == 0) {
-            ResultSet result = DB.selectQuerry("Select * from product");
+        if (DB.initConnection("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234") == 0) {
+            ResultSet result = DB.selectQuery("select * from product");
 
             if (result != null) {
                 try {
@@ -62,8 +61,6 @@ public class MainForm extends JFrame {
                 A.setModel(dataTable, model);
                 A.setVisible(true);
                 A.pack();
-
-
             }
         });
 
@@ -71,7 +68,7 @@ public class MainForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (dataTable.getSelectedRow() >= 0) {
-                    DB.execQuerry("delete from product where id=" + dataTable.getValueAt(dataTable.getSelectedRow(), 0));
+                    DB.execQuery("delete from product where id=" + dataTable.getValueAt(dataTable.getSelectedRow(), 0));
                     model.removeRow(dataTable.getSelectedRow());
                 } else {
                     showMessage("Внимание", "Ни одна запись для удаления не выбрана", JOptionPane.WARNING_MESSAGE);
