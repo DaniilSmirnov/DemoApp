@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-
 public class AddProduct extends JFrame {
     private JPanel mainpanel;
     private JButton saveBtn;

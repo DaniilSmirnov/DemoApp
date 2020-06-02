@@ -28,16 +28,6 @@ public class MainForm extends JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage("Images/myicon.png"));
 
         DB = new DBFramework();
-//        if (DB.initConnetion("jdbc:mysql://localhost:3306/usersdatabase?serverTimezone=UTC", "root", "1234")==0 ) {
-//            DB.execQuerry("create table if not exists product(id INT(64),title varchar(45),price int(64)) ");
-//            DB.execQuerry("insert into product(id,title,price) values(1,'box',100)");
-//        }
-
-//        String header[] = {"Идентификатор", "Цена", "Название"};
-//            String data[][] = {
-//                    {"123", "3456", "231345t"},
-//                    {"1323", "3412356", "2313r4ewed45t"},
-//            };
 
         this.font=font;
         model = new DefaultTableModel();

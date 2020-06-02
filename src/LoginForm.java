@@ -65,7 +65,6 @@ public class LoginForm extends JFrame {
                         try {
                             while (result.next()) {
                                 if (login_s.equals(result.getString("login")) && pass_s.equals(result.getString("pass"))) {
-//                                    showMessage("Внимание", "Нет подключения к серверу", JOptionPane.INFORMATION_MESSAGE);
                                     MainForm F = new MainForm(600, 500, "Склад", font);
                                     F.setVisible(true);
                                     F.pack();
